@@ -1,6 +1,6 @@
 package com.fighter.githubexplore.di
 
-import com.fighter.githubexplore.data.GithubService
+import com.fighter.githubexplore.data.remote.GithubService
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,9 +13,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
-
-    private const val baseUrl = "https://api.github.com/"
+class NetworkModule() {
+    companion object{
+        const val BASE_URL = "https://api.github.com/"
+    }
 
     @Singleton
     @Binds
@@ -24,7 +25,7 @@ object NetworkModule {
         gsonConverterFactory: GsonConverterFactory,
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(gsonConverterFactory)
             .build()
