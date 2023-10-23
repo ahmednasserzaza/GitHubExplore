@@ -3,7 +3,7 @@ package com.fighter.githubexplore.data.repository
 import com.fighter.githubexplore.data.remote.RepositoryDto
 
 data class Repository(
-    val fullName: String,
+    val repoName: String,
     val description: String?,
     val stargazersCount: Int,
     val createdAt: String,
@@ -13,7 +13,7 @@ data class Repository(
 
 fun RepositoryDto.toEntity(): Repository {
     return Repository(
-        fullName = fullName,
+        repoName = repoName,
         description = description,
         stargazersCount = stargazersCount,
         createdAt = createdAt,
