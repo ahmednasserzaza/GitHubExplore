@@ -1,4 +1,4 @@
-package com.fighter.githubexplore.ui.theme
+package com.fighter.githubexplore.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
