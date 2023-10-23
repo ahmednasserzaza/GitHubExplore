@@ -5,6 +5,7 @@ import com.fighter.githubexplore.data.repository.GithubRepository
 import com.fighter.githubexplore.data.repository.GithubRepositoryImpl
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 class RepositoryModule() {
 
     @Singleton
-    @Binds
+    @Provides
     fun provideGithubRepository(githubService: GithubService): GithubRepository {
         return GithubRepositoryImpl(githubService)
     }

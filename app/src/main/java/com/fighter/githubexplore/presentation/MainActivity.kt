@@ -1,4 +1,4 @@
-package com.fighter.githubexplore
+package com.fighter.githubexplore.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

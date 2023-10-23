@@ -3,6 +3,7 @@ package com.fighter.githubexplore.di
 import com.fighter.githubexplore.data.remote.GithubService
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
@@ -19,7 +20,7 @@ class NetworkModule() {
     }
 
     @Singleton
-    @Binds
+    @Provides
     fun provideRetrofit(
         client: OkHttpClient,
         gsonConverterFactory: GsonConverterFactory,
@@ -32,22 +33,22 @@ class NetworkModule() {
     }
 
     @Singleton
-    @Binds
+    @Provides
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
 
     @Singleton
-    @Binds
+    @Provides
     fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
 
     @Singleton
-    @Binds
+    @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BASIC
     }
 
     @Singleton
-    @Binds
+    @Provides
     fun provideApiService(retrofit: Retrofit): GithubService =
         retrofit.create(GithubService::class.java)
 }
