@@ -67,6 +67,7 @@ android {
 dependencies {
     val hiltVersion = "2.44"
     val retrofitVersion = "2.9.0"
+    val okHttpVersion = "4.11.0"
     val roomVersion = "2.6.0"
     val coroutineVersion = "1.7.3"
 
@@ -95,7 +96,8 @@ dependencies {
     // retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
+    implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
 
     // room
     implementation("androidx.room:room-runtime:$roomVersion")
