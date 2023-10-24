@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GitHub Explore</string>
+    <string name="owner_avatar">owner avatar</string>
+    <string name="repository_name">repository name</string>
 </resources>

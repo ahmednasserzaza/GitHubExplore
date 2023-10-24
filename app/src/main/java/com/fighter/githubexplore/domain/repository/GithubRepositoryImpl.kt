@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class GithubRepositoryImpl @Inject constructor(private val api: GithubService) : GithubRepository {
     override suspend fun getRepositories(): List<Repository> {
-        return api.getRepositories().toEntity()
+        return api.getRepositories().toEntity().take(10)
     }
 
     override suspend fun getRepositoryDetails(

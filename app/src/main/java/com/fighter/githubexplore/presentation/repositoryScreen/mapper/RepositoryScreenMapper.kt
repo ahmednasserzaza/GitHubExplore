@@ -28,7 +28,7 @@ fun RepositoryDetails.toUiState(): RepositoryDetailsUiState {
         owner = owner.toUiState(),
         description = description,
         starsCount = starsCount,
-        createdAt = createdAt
+        createdAt = createdAtFormat
     )
 }
 

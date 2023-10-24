@@ -8,9 +8,9 @@ data class RepositoryScreenUiState(
 )
 
 data class RepositoryUiState(
-    val repoName: String,
-    val fullName: String,
-    val owner: RepositoryOwnerUiState,
+    val repoName: String = "",
+    val fullName: String = "",
+    val owner: RepositoryOwnerUiState = RepositoryOwnerUiState(),
 )
 
 data class RepositoryOwnerUiState(
