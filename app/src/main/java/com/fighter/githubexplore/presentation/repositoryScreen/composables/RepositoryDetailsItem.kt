@@ -32,9 +32,9 @@ fun RepositoryDetailsItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .clip(shape = RoundedCornerShape(8.dp))
+            .clip(shape = RoundedCornerShape(topEnd = 24.dp, topStart = 24.dp))
             .background(Theme.colors.secondary)
-            .padding(8.dp),
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         RepositoryHeaderRow(repoDetailsState = repoDetailsState, onClickExit = onClickExit)
@@ -62,7 +62,7 @@ private fun OwnerContentRow(
     Row(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.spacedBy(48.dp, Alignment.Start),
     ) {
         Text(
             text = stringResource(R.string.owner),
@@ -110,12 +110,10 @@ private fun RepositoryRowItem(
     textContent: String,
     hint: String,
     modifier: Modifier = Modifier,
-    verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(16.dp, Alignment.Start),
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
-        verticalAlignment = verticalAlignment,
         horizontalArrangement = horizontalArrangement
     ) {
         Text(

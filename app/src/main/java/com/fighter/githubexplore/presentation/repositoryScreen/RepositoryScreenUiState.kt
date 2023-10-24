@@ -5,6 +5,7 @@ data class RepositoryScreenUiState(
     val repositories: List<RepositoryUiState> = emptyList(),
     val repositoryDetails: RepositoryDetailsUiState = RepositoryDetailsUiState(),
     val error: String = "",
+    val showRepositoryDetails: Boolean = false,
 )
 
 data class RepositoryUiState(

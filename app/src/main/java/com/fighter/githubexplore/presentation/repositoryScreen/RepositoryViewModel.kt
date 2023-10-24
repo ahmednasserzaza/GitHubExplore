@@ -2,6 +2,8 @@ package com.fighter.githubexplore.presentation.repositoryScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.fighter.githubexplore.domain.entity.Repository
+import com.fighter.githubexplore.domain.entity.RepositoryDetails
 import com.fighter.githubexplore.domain.repository.GithubRepository
 import com.fighter.githubexplore.presentation.repositoryScreen.mapper.toUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RepositoryViewModel @Inject constructor(
     private val repository: GithubRepository,
-) : ViewModel() {
+) : ViewModel(), RepositoryScreenInteractionListener {
 
     private val _state = MutableStateFlow(RepositoryScreenUiState())
     val state = _state.asStateFlow()
@@ -25,34 +27,67 @@ class RepositoryViewModel @Inject constructor(
         }
     }
 
+    private suspend fun <T> tryToExecute(
+        function: suspend () -> T,
+        onSuccess: suspend (T) -> Unit,
+        onError: (String) -> Unit,
+    ) {
+        try {
+            val result = function()
+            onSuccess(result)
+        } catch (e: Exception) {
+            onError(e.message.toString())
+        }
+    }
+
     private suspend fun getRepositories() {
         _state.update { it.copy(isLoading = true) }
-        try {
-            val repositories = repository.getRepositories()
-            _state.update { repositoryUiState ->
-                repositoryUiState.copy(
-                    isLoading = false,
-                    repositories = repositories.toUiState()
-                )
-            }
-        } catch (e: Exception) {
-            _state.update { it.copy(isLoading = false, error = e.message.toString()) }
-        }
+        tryToExecute(
+            function = { repository.getRepositories() },
+            onSuccess = ::onGetRepositoriesSuccess,
+            onError = ::onError
+        )
     }
 
     private suspend fun getRepositoryDetails(repoName: String, ownerName: String) {
         _state.update { it.copy(isLoading = true) }
-        try {
-            val repositoryDetails = repository.getRepositoryDetails(ownerName, repoName)
-            _state.update { repositoryUiState ->
-                repositoryUiState.copy(
-                    isLoading = false,
-                    repositoryDetails = repositoryDetails.toUiState()
-                )
-            }
-        } catch (e: Exception) {
-            _state.update { it.copy(isLoading = false, error = e.message.toString()) }
+        tryToExecute(
+            function = { repository.getRepositoryDetails(ownerName, repoName) },
+            onSuccess = ::onGetRepositoryDetailsSuccess,
+            onError = ::onError
+        )
+    }
+
+    private fun onGetRepositoriesSuccess(repositories: List<Repository>) {
+        _state.update { repositoryUiState ->
+            repositoryUiState.copy(
+                isLoading = false,
+                repositories = repositories.toUiState()
+            )
         }
     }
 
+    private fun onGetRepositoryDetailsSuccess(repositoryDetails: RepositoryDetails) {
+        _state.update { repositoryUiState ->
+            repositoryUiState.copy(
+                isLoading = false,
+                repositoryDetails = repositoryDetails.toUiState(),
+                showRepositoryDetails = true
+            )
+        }
+    }
+
+    private fun onError(error: String) {
+        _state.update { it.copy(isLoading = false, error = error) }
+    }
+
+    override fun onRepositoryClicked(ownerName: String, repoName: String) {
+        viewModelScope.launch {
+            getRepositoryDetails(repoName, ownerName)
+        }
+    }
+
+    override fun onExitClicked() {
+        _state.update { it.copy(showRepositoryDetails = false) }
+    }
 }
