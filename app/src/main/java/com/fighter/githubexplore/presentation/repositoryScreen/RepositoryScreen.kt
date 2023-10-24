@@ -1,4 +1,4 @@
-package com.fighter.githubexplore.presentation.homeScreen
+package com.fighter.githubexplore.presentation.repositoryScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.fighter.githubexplore.presentation.homeScreen.composables.RepositoryItem
+import com.fighter.githubexplore.presentation.repositoryScreen.composables.RepositoryItem
 import com.fighter.githubexplore.presentation.ui.theme.Theme
 
 @JvmOverloads
@@ -24,7 +24,7 @@ fun RepositoryScreen(viewModel: RepositoryViewModel = hiltViewModel()) {
 }
 
 @Composable
-fun Repository(state: RepositoryUiState) {
+fun Repository(state: RepositoryScreenUiState) {
     LazyColumn(
         modifier = Modifier.fillMaxSize().background(Theme.colors.background),
         verticalArrangement = Arrangement.spacedBy(8.dp),

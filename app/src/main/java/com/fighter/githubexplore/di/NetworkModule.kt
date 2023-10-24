@@ -1,7 +1,6 @@
 package com.fighter.githubexplore.di
 
-import com.fighter.githubexplore.data.remote.GithubService
-import dagger.Binds
+import com.fighter.githubexplore.data.remote.service.GithubService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

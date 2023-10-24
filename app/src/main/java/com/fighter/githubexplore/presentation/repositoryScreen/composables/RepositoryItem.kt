@@ -1,4 +1,4 @@
-package com.fighter.githubexplore.presentation.homeScreen.composables
+package com.fighter.githubexplore.presentation.repositoryScreen.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,12 +27,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.fighter.githubexplore.presentation.homeScreen.RepositoryInfoUiState
+import com.fighter.githubexplore.presentation.repositoryScreen.RepositoryUiState
 import com.fighter.githubexplore.presentation.ui.theme.Theme
 
 @Composable
 fun RepositoryItem(
-    repoState: RepositoryInfoUiState,
+    repoState: RepositoryUiState,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -106,7 +106,7 @@ fun RepositoryItem(
 }
 
 @Composable
-private fun OwnerContent(repoState: RepositoryInfoUiState) {
+private fun OwnerContent(repoState: RepositoryUiState) {
     Column(
         modifier = Modifier.fillMaxWidth(0.3f).fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -132,5 +132,5 @@ private fun OwnerContent(repoState: RepositoryInfoUiState) {
 @Preview(showBackground = true, widthDp = 360)
 @Composable
 fun Preview() {
-    RepositoryItem(RepositoryInfoUiState())
+    RepositoryItem(RepositoryUiState())
 }

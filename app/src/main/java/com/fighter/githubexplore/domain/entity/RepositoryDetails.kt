@@ -1,33 +1,22 @@
-package com.fighter.githubexplore.data.repository
+package com.fighter.githubexplore.domain.entity
 
-import com.fighter.githubexplore.data.remote.RepositoryDto
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.periodUntil
 import kotlinx.datetime.toLocalDateTime
 
-data class Repository(
+data class RepositoryDetails(
     val repoName: String,
+    val owner: RepositoryOwner,
     val description: String,
-    val stargazersCount: Int,
+    val starsCount: Int,
     val createdAt: String,
-    val login: String,
-    val avatarUrl: String,
-)
-
-fun RepositoryDto.toEntity(): Repository {
-    return Repository(
-        repoName = repoName,
-        description = description ?: "",
-        stargazersCount = stargazersCount,
-        createdAt = formatCreationDate(createdAt),
-        login = owner.login,
-        avatarUrl = owner.avatarUrl
-    )
+) {
+    val createdAtFormat = formatCreationDate(createdAt)
 }
 
-fun formatCreationDate(apiDateString: String): String {
+private fun formatCreationDate(apiDateString: String): String {
     val apiDateInstant = Instant.parse(apiDateString)
     val currentInstant = Clock.System.now()
     val period = apiDateInstant.periodUntil(currentInstant, TimeZone.UTC)
