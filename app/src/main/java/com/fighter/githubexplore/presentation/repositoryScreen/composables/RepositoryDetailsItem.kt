@@ -84,7 +84,7 @@ private fun RepositoryHeaderRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Row {
+        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             Icon(
                 imageVector = Icons.Filled.Star,
                 contentDescription = stringResource(R.string.stars),
@@ -97,7 +97,9 @@ private fun RepositoryHeaderRow(
             )
         }
         Icon(
-            modifier = Modifier.padding(8.dp).noRippleEffect { onClickExit() },
+            modifier = Modifier
+                .padding(8.dp)
+                .noRippleEffect { onClickExit() },
             imageVector = Icons.Filled.Close,
             contentDescription = stringResource(R.string.icon_close),
             tint = Theme.colors.onSurface

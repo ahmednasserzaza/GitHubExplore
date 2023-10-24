@@ -21,14 +21,13 @@ private fun formatCreationDate(apiDateString: String): String {
     val currentInstant = Clock.System.now()
     val period = apiDateInstant.periodUntil(currentInstant, TimeZone.UTC)
 
-    return when {
-        period.months >= 6 -> {
-            apiDateInstant.toLocalDateTime(TimeZone.UTC).run {
-                "${dayOfWeek.name}, ${month.name} $dayOfMonth, $year"
-            }
+    return if (period.years != 0) {
+        "${period.years} years ago"
+    } else if (period.months >= 6) {
+        "${period.months} months ago"
+    } else {
+        apiDateInstant.toLocalDateTime(TimeZone.UTC).run {
+            "${dayOfWeek.name}, ${month.name} $dayOfMonth, $year"
         }
-
-        period.months >= 1 -> "${period.months} months ago"
-        else -> "${period.years} years ago"
     }
 }

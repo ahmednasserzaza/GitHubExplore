@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.fighter.githubexplore"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.fighter.githubexplore"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -71,6 +71,7 @@ dependencies {
     val roomVersion = "2.6.0"
     val coroutineVersion = "1.7.3"
     val lottieVersion = "6.1.0"
+    val paging = "3.2.1"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -103,13 +104,11 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
 
-    // room
-//    implementation("androidx.room:room-runtime:$roomVersion")
-//    annotationProcessor("androidx.room:room-compiler:$roomVersion")
-//    kapt("androidx.room:room-compiler:$roomVersion")
-//    implementation("androidx.room:room-ktx:$roomVersion")
-//    implementation("androidx.room:room-guava:$roomVersion")
-//    implementation("androidx.room:room-paging:$roomVersion")
+    //Room
+    implementation("androidx.room:room-runtime:$roomVersion")
+    kapt ("androidx.room:room-compiler:$roomVersion")
+    implementation ("androidx.room:room-ktx:$roomVersion")
+    implementation ("androidx.room:room-paging:$roomVersion")
 
     // coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
@@ -125,5 +124,9 @@ dependencies {
 
     // lottie
     implementation ("com.airbnb.android:lottie-compose:$lottieVersion")
+
+    // Paging
+    implementation ("androidx.paging:paging-runtime-ktx:$paging")
+    implementation ("androidx.paging:paging-compose:$paging")
 
 }
