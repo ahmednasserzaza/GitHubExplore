@@ -70,6 +70,7 @@ dependencies {
     val okHttpVersion = "4.11.0"
     val roomVersion = "2.6.0"
     val coroutineVersion = "1.7.3"
+    val lottieVersion = "6.1.0"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -121,4 +122,8 @@ dependencies {
 
     // shimmer effect
     implementation ("com.facebook.shimmer:shimmer:0.1.0@aar")
+
+    // lottie
+    implementation ("com.airbnb.android:lottie-compose:$lottieVersion")
+
 }

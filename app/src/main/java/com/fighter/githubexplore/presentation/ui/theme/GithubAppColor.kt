@@ -10,6 +10,7 @@ data class GithubAppColor(
     val onSurface: Color,
     val hint: Color,
     val disable: Color,
+    val tertiary: Color,
 )
 
 val LightColors = GithubAppColor(
@@ -20,6 +21,7 @@ val LightColors = GithubAppColor(
     onSurface = Color(0xDE000000),
     hint = Color(0xB3000000),
     disable = Color(0x402196F3),
+    tertiary = Color(0xFFCACACA),
 )
 
 val DarkColors = GithubAppColor(
@@ -30,4 +32,5 @@ val DarkColors = GithubAppColor(
     onSurface = Color(0xDEFFFFFF),
     hint = Color(0x99FFFFFF),
     disable = Color(0x40A3A3A3),
+    tertiary = Color(0xFF141414),
 )

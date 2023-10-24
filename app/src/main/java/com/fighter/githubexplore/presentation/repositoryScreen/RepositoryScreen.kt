@@ -20,6 +20,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -28,6 +29,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.fighter.githubexplore.R
 import com.fighter.githubexplore.presentation.repositoryScreen.composables.RepositoryDetailsItem
 import com.fighter.githubexplore.presentation.repositoryScreen.composables.RepositoryItem
 import com.fighter.githubexplore.presentation.repositoryScreen.composables.shimmerEffect
@@ -43,6 +49,8 @@ fun RepositoryScreen(viewModel: RepositoryViewModel = hiltViewModel()) {
     AnimatedContent(state.isLoading, label = "") {
         if (state.isLoading) {
             LoadingEffect()
+        } else if (state.error.isNotEmpty()) {
+            ErrorView()
         } else {
             RepositoryScreenContent(state = state, listener = viewModel)
         }
@@ -78,6 +86,20 @@ fun RepositoryScreenContent(
             )
         }
     }
+}
+
+@Composable
+private fun ErrorView() {
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.error))
+    val progress by animateLottieCompositionAsState(composition)
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        LottieAnimation(
+            modifier = Modifier.size(200.dp),
+            composition = composition,
+            progress = { progress },
+        )
+    }
+
 }
 
 @Composable

@@ -33,7 +33,7 @@ fun RepositoryDetailsItem(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(topEnd = 16.dp, topStart = 16.dp))
-            .background(Theme.colors.secondary)
+            .background(Theme.colors.tertiary)
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -97,7 +97,7 @@ private fun RepositoryHeaderRow(
             )
         }
         Icon(
-            modifier = Modifier.noRippleEffect { onClickExit() },
+            modifier = Modifier.padding(8.dp).noRippleEffect { onClickExit() },
             imageVector = Icons.Filled.Close,
             contentDescription = stringResource(R.string.icon_close),
             tint = Theme.colors.onSurface
