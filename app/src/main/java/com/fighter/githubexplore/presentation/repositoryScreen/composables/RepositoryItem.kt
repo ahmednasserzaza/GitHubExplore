@@ -30,7 +30,7 @@ fun RepositoryItem(
         modifier = modifier
             .fillMaxWidth()
             .noRippleEffect { onClick(repoState.owner.ownerName, repoState.repoName) }
-            .clip(shape = RoundedCornerShape(8.dp))
+            .clip(shape = RoundedCornerShape(16.dp))
             .background(Theme.colors.secondary)
             .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),

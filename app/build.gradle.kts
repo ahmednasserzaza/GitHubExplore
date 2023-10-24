@@ -118,4 +118,7 @@ dependencies {
 
     // localDateTime kotlin
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
+
+    // shimmer effect
+    implementation ("com.facebook.shimmer:shimmer:0.1.0@aar")
 }

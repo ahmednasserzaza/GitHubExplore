@@ -32,7 +32,7 @@ fun RepositoryDetailsItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .clip(shape = RoundedCornerShape(topEnd = 24.dp, topStart = 24.dp))
+            .clip(shape = RoundedCornerShape(topEnd = 16.dp, topStart = 16.dp))
             .background(Theme.colors.secondary)
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)

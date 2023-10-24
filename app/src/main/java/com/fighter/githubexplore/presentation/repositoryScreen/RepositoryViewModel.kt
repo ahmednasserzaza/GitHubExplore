@@ -50,7 +50,6 @@ class RepositoryViewModel @Inject constructor(
     }
 
     private suspend fun getRepositoryDetails(repoName: String, ownerName: String) {
-        _state.update { it.copy(isLoading = true) }
         tryToExecute(
             function = { repository.getRepositoryDetails(ownerName, repoName) },
             onSuccess = ::onGetRepositoryDetailsSuccess,
@@ -70,7 +69,6 @@ class RepositoryViewModel @Inject constructor(
     private fun onGetRepositoryDetailsSuccess(repositoryDetails: RepositoryDetails) {
         _state.update { repositoryUiState ->
             repositoryUiState.copy(
-                isLoading = false,
                 repositoryDetails = repositoryDetails.toUiState(),
                 showRepositoryDetails = true
             )
