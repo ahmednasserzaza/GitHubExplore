@@ -31,18 +31,20 @@ import com.fighter.githubexplore.presentation.ui.theme.Theme
 @Composable
 fun RepositoryItem(
     repoState: RepositoryUiState,
+    onClick: (ownerName: String, repoName: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .noRippleEffect { onClick(repoState.owner.ownerName, repoState.repoName) }
             .clip(shape = RoundedCornerShape(8.dp))
             .background(Theme.colors.secondary)
             .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        OwnerContent(owner = repoState.owner)
+        OwnerContent(owner = repoState.owner, modifier = Modifier.fillMaxWidth(0.3f))
         RepositoryContent(repoState)
     }
 }
@@ -70,9 +72,9 @@ private fun RepositoryContent(repoState: RepositoryUiState, modifier: Modifier =
 }
 
 @Composable
-private fun OwnerContent(owner: RepositoryOwnerUiState, modifier: Modifier = Modifier) {
+fun OwnerContent(owner: RepositoryOwnerUiState, modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier.fillMaxWidth(0.3f),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
     ) {
@@ -99,5 +101,5 @@ private fun OwnerContent(owner: RepositoryOwnerUiState, modifier: Modifier = Mod
 @Preview(showBackground = true, widthDp = 360)
 @Composable
 fun Preview() {
-    RepositoryItem(RepositoryUiState())
+    RepositoryItem(RepositoryUiState(), onClick = { _, _ -> })
 }
