@@ -10,7 +10,7 @@ data class RepositoryUiState(
 
 data class RepositoryInfoUiState(
     val repositoryName: String = "",
-    val description: String? = "",
+    val description: String = "",
     val starsCount: Int = 0,
     val createdAt: String = "",
     val ownerName: String = "",

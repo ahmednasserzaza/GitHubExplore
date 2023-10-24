@@ -3,6 +3,7 @@ package com.fighter.githubexplore.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.fighter.githubexplore.presentation.homeScreen.RepositoryScreen
 import com.fighter.githubexplore.presentation.ui.theme.GitHubExploreTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -12,7 +13,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             GitHubExploreTheme {
-
+                RepositoryScreen()
             }
         }
     }

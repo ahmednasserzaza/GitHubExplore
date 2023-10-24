@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RepositoryViewModel @Inject constructor(
-    private val repository: GithubRepository,
+    private val repository: GithubRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(RepositoryUiState())
@@ -21,6 +21,7 @@ class RepositoryViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             getRepositories()
+            println("AAAAA init : ${state.value}")
         }
     }
 
@@ -33,6 +34,7 @@ class RepositoryViewModel @Inject constructor(
                     isLoading = false,
                     repositories = repositories.map { it.toUiState() })
             }
+            println("AAAAA after : ${state.value}")
         } catch (e: Exception) {
             _state.update { it.copy(isLoading = false, error = e.message.toString()) }
         }

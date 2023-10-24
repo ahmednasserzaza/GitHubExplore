@@ -8,6 +8,9 @@ interface GithubService {
     @GET("repositories")
     suspend fun getRepositories(): List<RepositoryDto>
 
-    @GET("repos/{fullName}")
-    suspend fun getRepositoryInfo(@Path("fullName") fullName: String): RepositoryDto
+    @GET("repos/{ownerName}/{repoName}")
+    suspend fun getRepositoryInfo(
+        @Path("ownerName") ownerName: String,
+        @Path("repoName") repoName: String,
+    ): RepositoryDto
 }

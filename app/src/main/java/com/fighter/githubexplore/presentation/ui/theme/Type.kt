@@ -29,7 +29,7 @@ fun textSubTitle(): TextStyle {
 @Composable
 fun textTitle(): TextStyle {
     return TextStyle(
-        fontSize = 20.sp,
+        fontSize = 18.sp,
         fontFamily = FontFamily(Font(R.font.poppins_semi_bold)),
         fontWeight = FontWeight.W600,
     )

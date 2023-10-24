@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.fighter.githubexplore"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -42,11 +42,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "18"
     }
     buildFeatures {
         compose = true
@@ -86,12 +86,15 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation ("androidx.work:work-runtime-ktx:2.8.1")
 
     // hilt
     implementation("androidx.hilt:hilt-work:1.0.0")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    implementation("androidx.navigation:navigation-compose:2.4.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     // retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
@@ -109,4 +112,10 @@ dependencies {
 
     // coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
+
+    // coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+    // localDateTime kotlin
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
 }
